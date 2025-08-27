@@ -45,36 +45,6 @@ app.get('/protocols', (req, res) => {
   });
 });
 
-app.get('/apr/:protocol/:chainId', async (req, res) => {
-  const { protocol, chainId } = req.params;
-
-  try {
-    // Validate protocol type
-    if (!isValidProtocolType(protocol)) {
-      return res.status(400).json({
-        error: 'Unsupported protocol',
-        supported_protocols: Object.values(ProtocolType)
-      });
-    }
-
-    const protocolInstance = protocols.get(protocol.toUpperCase());
-    if (!protocolInstance) {
-      return res.status(501).json({
-        error: 'Protocol not implemented yet',
-        protocol: protocol.toUpperCase()
-      });
-    }
-
-    const apr = await protocolInstance.getAPR(chainId);
-    res.json({
-      protocol: protocol.toUpperCase(),
-      chainId,
-      apr
-    });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
 
 // Get all APRs for a specific protocol
 app.get('/aprs/:protocol', async (req, res) => {
@@ -110,8 +80,6 @@ app.get('/aprs/:protocol', async (req, res) => {
 // Get APRs from all protocols
 app.get('/aprs', async (req, res) => {
   try {
-    const allProtocolsAPRs = [];
-
     // Create an array of promises for parallel execution
     const promises = Array.from(protocols.entries()).map(async ([protocolType, protocol]) => {
       try {
