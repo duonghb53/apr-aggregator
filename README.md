@@ -10,24 +10,24 @@ A service that aggregates APR (Annual Percentage Rate) information from various 
 - **Extensible Architecture**: Easy to add new protocols through standardized interface
 - **Type Safety**: Protocol types are enforced through enums
 - **Multi-Protocol Support**: Currently supports:
-  - Compound Protocol (Fully Implemented)
-  - AAVE Protocol (In Progress)
-  - Morpho Protocol (Planned)
-  - Moonwell Protocol (Planned)
-  - Euler Protocol (Planned)
-  - Fluid Protocol (Planned)
-  - Seamless Protocol (Planned)
+  - Compound Protocol
+  - AAVE Protocol
+  - Morpho Protocol
+  - Moonwell Protocol
+  - Euler Protocol
+  - Fluid Protocol
+  - Seamless Protocol
 
 ## Setup
 
 1. Install dependencies:
 ```bash
-npm install
+yarn install
 ```
 
 2. Start the service:
 ```bash
-npm start
+yarn start
 ```
 
 The service will start on port 3000 by default. You can change this by setting the PORT environment variable.
